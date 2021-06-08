@@ -1,15 +1,30 @@
 PODS:
-  - BlueToothPrintAPI (0.1.0)
+  - BabyBluetooth (0.7.0)
+  - BlueToothPrintAPI (0.0.1):
+    - BabyBluetooth (~> 0.7.0)
+    - SSZipArchive (~> 2.4.2)
+    - WebViewJavascriptBridge (~> 6.0)
+  - SSZipArchive (2.4.2)
+  - WebViewJavascriptBridge (6.0.3)
 
 DEPENDENCIES:
   - BlueToothPrintAPI (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - BabyBluetooth
+    - SSZipArchive
+    - WebViewJavascriptBridge
 
 EXTERNAL SOURCES:
   BlueToothPrintAPI:
     :path: "../"
 
 SPEC CHECKSUMS:
-  BlueToothPrintAPI: 8f74ec0894bc7f17ee1882dd43690524a13b917a
+  BabyBluetooth: d50758aecf24d4a0ab9271d69f0f116d6bee51c9
+  BlueToothPrintAPI: 4a643daed5f8390333259872f4bdd6332a3c1640
+  SSZipArchive: e7b4f3d9e780c2acc1764cd88fbf2de28f26e5b2
+  WebViewJavascriptBridge: 7f5bc4d3581e672e8f32bd0f812d54bc69bb8e29
 
 PODFILE CHECKSUM: 62d6c05aaeddc06b53367cd287facc392aa4230e
 

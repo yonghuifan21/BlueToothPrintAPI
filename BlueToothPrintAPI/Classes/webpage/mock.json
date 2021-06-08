@@ -1,0 +1,457 @@
+[
+  [
+    {
+      "textSize": "large",
+      "type": "string",
+      "align": "center",
+      "content": "【超级会员】",
+      "span": 24
+    }
+  ],
+  {
+    "width": 4,
+    "type": "image",
+    "align": "center",
+    "content": "https://i.loli.net/2021/01/04/CY5QZoJF9mb4jnp.png"
+  },
+  [
+    {
+      "textSize": "small",
+      "type": "string",
+      "align": "center",
+      "content": "欢迎光临 永辉超市浦新店",
+      "span": 24
+    }
+  ],
+  {
+    "type": "line",
+    "content": "-"
+  },
+  [
+    {
+      "textSize": "large",
+      "type": "string",
+      "align": "left",
+      "content": "辉#15-极速达配送",
+      "span": 24
+    }
+  ],
+  [
+    {
+      "textSize": "large",
+      "type": "string",
+      "align": "left",
+      "content": "01-04 16:33送达",
+      "span": 24
+    }
+  ],
+  [
+    {
+      "textSize": "small",
+      "type": "string",
+      "align": "left",
+      "content": "第2次打印",
+      "span": 24
+    }
+  ],
+  {
+    "type": "line",
+    "content": "-"
+  },
+  [
+    {
+      "textSize": "small",
+      "type": "string",
+      "align": "left",
+      "content": "成交时间：2021-01-04 15:22:22",
+      "span": 24
+    }
+  ],
+  [
+    {
+      "textSize": "small",
+      "type": "string",
+      "align": "left",
+      "content": "订 单 号：1207880100089040",
+      "span": 24
+    }
+  ],
+  [
+    {
+      "textSize": "small",
+      "type": "string",
+      "align": "left",
+      "content": "收 货 人：测试|M",
+      "span": 24
+    }
+  ],
+  [
+    {
+      "textSize": "small",
+      "type": "string",
+      "align": "left",
+      "content": "联系电话：17521249838",
+      "span": 24
+    }
+  ],
+  [
+    {
+      "textSize": "small",
+      "type": "string",
+      "align": "left",
+      "content": "收货地址：福州,金山桔园三期,金山桔园三期,9068",
+      "span": 24
+    }
+  ],
+  {
+    "type": "line",
+    "content": "-"
+  },
+  [
+    {
+      "textSize": "large",
+      "type": "string",
+      "align": "left",
+      "content": "购买商品",
+      "span": 12
+    },
+    {
+      "textSize": "large",
+      "align": "right",
+      "type": "string",
+      "content": "共5件",
+      "span": 12
+    }
+  ],
+  [
+    {
+      "textSize": "small",
+      "type": "string",
+      "align": "left",
+      "content": "1.普通商品组合码H000 份",
+      "span": 24
+    }
+  ],
+  [
+    {
+      "textSize": "large",
+      "type": "string",
+      "align": "right",
+      "content": "x2",
+      "span": 24
+    }
+  ],
+  [
+    {
+      "textSize": "small",
+      "type": "string",
+      "align": "left",
+      "content": "6941742585155",
+      "span": 12
+    },
+    {
+      "textSize": "small",
+      "type": "string",
+      "align": "right",
+      "content": "份",
+      "span": 12
+    }
+  ],
+  [
+    {
+      "textSize": "small",
+      "type": "string",
+      "align": "left",
+      "content": "单价22.22",
+      "span": 12
+    },
+    {
+      "textSize": "small",
+      "align": "right",
+      "type": "string",
+      "content": "金额44.44",
+      "span": 12
+    }
+  ],
+  {
+    "type": "line",
+    "content": "-"
+  },
+  [
+    {
+      "textSize": "small",
+      "type": "string",
+      "align": "left",
+      "content": "2.东北绿豆 1±0.1kg",
+      "span": 24
+    }
+  ],
+  [
+    {
+      "textSize": "large",
+      "type": "string",
+      "align": "right",
+      "content": "x2",
+      "span": 24
+    }
+  ],
+  [
+    {
+      "textSize": "small",
+      "type": "string",
+      "align": "left",
+      "content": "2302770000005",
+      "span": 12
+    },
+    {
+      "textSize": "small",
+      "type": "string",
+      "align": "right",
+      "content": "1±0.1kg",
+      "span": 12
+    }
+  ],
+  [
+    {
+      "textSize": "small",
+      "type": "string",
+      "align": "left",
+      "content": "单价9.18",
+      "span": 12
+    },
+    {
+      "textSize": "small",
+      "align": "right",
+      "type": "string",
+      "content": "金额18.36",
+      "span": 12
+    }
+  ],
+  {
+    "type": "line",
+    "content": "-"
+  },
+  [
+    {
+      "textSize": "small",
+      "type": "string",
+      "align": "left",
+      "content": "3.大红豆 750±20g",
+      "span": 24
+    }
+  ],
+  [
+    {
+      "textSize": "large",
+      "type": "string",
+      "align": "right",
+      "content": "x1",
+      "span": 24
+    }
+  ],
+  [
+    {
+      "textSize": "small",
+      "type": "string",
+      "align": "left",
+      "content": "2302771000004",
+      "span": 12
+    },
+    {
+      "textSize": "small",
+      "type": "string",
+      "align": "right",
+      "content": "750±20g",
+      "span": 12
+    }
+  ],
+  [
+    {
+      "textSize": "small",
+      "type": "string",
+      "align": "left",
+      "content": "单价9.39",
+      "span": 12
+    },
+    {
+      "textSize": "small",
+      "align": "right",
+      "type": "string",
+      "content": "金额9.39",
+      "span": 12
+    }
+  ],
+  {
+    "type": "line",
+    "content": "-"
+  },
+  [
+    {
+      "textSize": "small",
+      "type": "string",
+      "align": "left",
+      "content": "商品总额：",
+      "span": 12
+    },
+    {
+      "textSize": "small",
+      "align": "right",
+      "type": "string",
+      "content": "¥72.19",
+      "span": 12
+    }
+  ],
+  [
+    {
+      "textSize": "small",
+      "type": "string",
+      "align": "left",
+      "content": "包装费：",
+      "span": 12
+    },
+    {
+      "textSize": "small",
+      "align": "right",
+      "type": "string",
+      "content": "¥0.30",
+      "span": 12
+    }
+  ],
+  [
+    {
+      "textSize": "small",
+      "type": "string",
+      "align": "left",
+      "content": "订单运费：",
+      "span": 12
+    },
+    {
+      "textSize": "small",
+      "align": "right",
+      "type": "string",
+      "content": "¥5.54",
+      "span": 12
+    }
+  ],
+  [
+    {
+      "textSize": "small",
+      "type": "string",
+      "align": "left",
+      "content": "商品优惠：",
+      "span": 12
+    },
+    {
+      "textSize": "small",
+      "align": "right",
+      "type": "string",
+      "content": "¥-0.92",
+      "span": 12
+    }
+  ],
+  [
+    {
+      "textSize": "small",
+      "type": "string",
+      "align": "left",
+      "content": "运费优惠：",
+      "span": 12
+    },
+    {
+      "textSize": "small",
+      "align": "right",
+      "type": "string",
+      "content": "¥0.00",
+      "span": 12
+    }
+  ],
+  [
+    {
+      "textSize": "small",
+      "type": "string",
+      "align": "left",
+      "content": "积分优惠：",
+      "span": 12
+    },
+    {
+      "textSize": "small",
+      "align": "right",
+      "type": "string",
+      "content": "¥-4.60",
+      "span": 12
+    }
+  ],
+  {
+    "type": "line",
+    "content": "-"
+  },
+  [
+    {
+      "textSize": "small",
+      "type": "string",
+      "align": "left",
+      "content": "应收金额：",
+      "span": 12
+    },
+    {
+      "textSize": "small",
+      "align": "right",
+      "type": "string",
+      "content": "¥72.51",
+      "span": 12
+    }
+  ],
+  {
+    "type": "line",
+    "content": "-"
+  },
+  {
+    "type": "qr",
+    "content": "1207880100089040"
+  },
+  {
+    "type": "bar",
+    "content": "1207880100089040"
+  },
+  [
+    {
+      "textSize": "small",
+      "type": "string",
+      "align": "center",
+      "content": "提货码：1207880100089040",
+      "span": 24
+    }
+  ],
+  [
+    {
+      "textSize": "large",
+      "type": "string",
+      "align": "left",
+      "content": "------",
+      "span": 7
+    },
+    {
+      "textSize": "large",
+      "align": "center",
+      "type": "string",
+      "content": "温馨提示",
+      "span": 10
+    },
+    {
+      "textSize": "large",
+      "align": "right",
+      "type": "string",
+      "content": "------",
+      "span": 7
+    }
+  ],
+  [
+    {
+      "textSize": "small",
+      "type": "string",
+      "align": "left",
+      "content": "永辉高薪诚聘：\n☆配送员：保底5000，高提成\n【其他福利】：五险一金，带薪年假",
+      "span": 24
+    }
+  ]
+]

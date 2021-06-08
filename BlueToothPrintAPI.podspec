@@ -21,13 +21,15 @@ Pod::Spec.new do |s|
 TODO: Add long description of the pod here.
                        DESC
 
-  s.homepage         = 'https://github.com/范国徽 Jack/BlueToothPrintAPI'
+  s.homepage         = 'https://github.com/yonghuifan21/BlueToothPrintAPI'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { '范国徽 Jack' => 'jackfan1@yonghui.com' }
-  s.source           = { :git => 'https://github.com/范国徽 Jack/BlueToothPrintAPI.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.author           = { 'yonghuifan21' => 'jackfan1@yonghui.com' }  
+  s.source           = { :git => 'https://github.com/yonghuifan21/BlueToothPrintAPI.git', :tag => s.version.to_s }
 
+  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  
+  s.platform      = :ios, '9.0'  #支持的平台
   s.ios.deployment_target = '9.0'
 
   s.source_files = 'BlueToothPrintAPI/Classes/**/*'
@@ -36,7 +38,11 @@ TODO: Add long description of the pod here.
   #   'BlueToothPrintAPI' => ['BlueToothPrintAPI/Assets/*.png']
   # }
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.public_header_files = 'Pod/Classes/**/*.h'
+  s.frameworks = 'UIKit'
+  
+  s.dependency 'WebViewJavascriptBridge', '~> 6.0'
+  s.dependency 'SSZipArchive', '~> 2.4.2'
+  s.dependency 'BabyBluetooth','~> 0.7.0'
+
 end
