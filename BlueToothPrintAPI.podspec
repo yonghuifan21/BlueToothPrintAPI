@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'BlueToothPrintAPI'
-  s.version          = '0.1.0'
+  s.version          = '0.1.1'
   s.summary          = 'BlueToothPrintAPI is a print SDK with BlueTooth, you just send you print info with a method, then you can get call back from the print!'
 
 # This description is used to generate tags and improve search results.
