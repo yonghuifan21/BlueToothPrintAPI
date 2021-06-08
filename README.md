@@ -27,3 +27,4 @@ pod 'BlueToothPrintAPI'
 ## License
 
 BlueToothPrintAPI is available under the MIT license. See the LICENSE file for more info.
+# BlueToothPrintAPI
