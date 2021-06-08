@@ -1,0 +1,16 @@
+PODS:
+  - BlueToothPrintAPI (0.1.0)
+
+DEPENDENCIES:
+  - BlueToothPrintAPI (from `../`)
+
+EXTERNAL SOURCES:
+  BlueToothPrintAPI:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  BlueToothPrintAPI: 8f74ec0894bc7f17ee1882dd43690524a13b917a
+
+PODFILE CHECKSUM: 62d6c05aaeddc06b53367cd287facc392aa4230e
+
+COCOAPODS: 1.10.1
