@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'BlueToothPrintAPI'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of BlueToothPrintAPI.'
+  s.summary          = 'BlueToothPrintAPI is a print SDK with BlueTooth, you just send you print info with a method, then you can get call back from the print!'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,13 +18,13 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+TODO: BlueToothPrintAPI is a print SDK with BlueTooth, you just send you print info with a method, then you can get call back from the print!
                        DESC
 
   s.homepage         = 'https://github.com/yonghuifan21/BlueToothPrintAPI'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'yonghuifan21' => 'jackfan1@yonghui.com' }
+  s.author           = { 'yonghuifan21' => 'andy_yonghui@163.com' }
   s.source           = { :git => 'https://github.com/yonghuifan21/BlueToothPrintAPI.git', :tag => s.version.to_s }
 
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
