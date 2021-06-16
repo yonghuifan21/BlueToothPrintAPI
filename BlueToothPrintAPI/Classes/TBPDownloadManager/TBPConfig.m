@@ -71,7 +71,11 @@
     } else {
         // 去查询APP内有没有index.html
         // 1.获取jsbundle路径
-        NSString *tempBundlePath = [[NSBundle mainBundle] pathForResource:HTMLNAME ofType: HTMLTYPE];
+//        NSURL *bundleURL = [[NSBundle mainBundle] URLForResource:@"BlueToothPrintAPI" withExtension:@"bundle"];
+        NSBundle *bundle = [NSBundle bundleForClass: [self class]];
+        NSURL *bundleUrl = [bundle URLForResource:@"BlueToothPrintAPI" withExtension:@"bundle"];
+        bundle = [NSBundle bundleWithURL: bundleUrl];
+        NSString *tempBundlePath = [bundle pathForResource:HTMLNAME ofType: HTMLTYPE];
         return tempBundlePath;
     }
 }

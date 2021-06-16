@@ -21,6 +21,7 @@
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
+		8651E2592679AF06002BE9D1 /* printjson.json in Resources */ = {isa = PBXBuildFile; fileRef = 8651E2582679AF06002BE9D1 /* printjson.json */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		A4243337503833BD2430A7A8 /* Pods_BlueToothPrintAPI_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5967892BF3079B40C3C50B3 /* Pods_BlueToothPrintAPI_Example.framework */; };
 		D5ADD36B9DB7B1CDBEEFBA6B /* Pods_BlueToothPrintAPI_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D610428FD6458B4ED8F3BCF /* Pods_BlueToothPrintAPI_Tests.framework */; };
@@ -62,6 +63,7 @@
 		6C4EC9034F2452E29E22A6D7 /* Pods-BlueToothPrintAPI_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlueToothPrintAPI_Tests.release.xcconfig"; path = "Target Support Files/Pods-BlueToothPrintAPI_Tests/Pods-BlueToothPrintAPI_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		80574DF5DBE01005A220A342 /* Pods-BlueToothPrintAPI_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlueToothPrintAPI_Tests.debug.xcconfig"; path = "Target Support Files/Pods-BlueToothPrintAPI_Tests/Pods-BlueToothPrintAPI_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		8651E2582679AF06002BE9D1 /* printjson.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = printjson.json; path = ../../BlueToothPrintAPI/Assets/webpage/printjson.json; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9D610428FD6458B4ED8F3BCF /* Pods_BlueToothPrintAPI_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BlueToothPrintAPI_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5967892BF3079B40C3C50B3 /* Pods_BlueToothPrintAPI_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BlueToothPrintAPI_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,6 +140,7 @@
 				6003F5A5195388D20070C39A /* TBPViewController.h */,
 				6003F5A6195388D20070C39A /* TBPViewController.m */,
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
+				8651E2582679AF06002BE9D1 /* printjson.json */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
 			);
@@ -279,6 +282,7 @@
 			files = (
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
+				8651E2592679AF06002BE9D1 /* printjson.json in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
 			);

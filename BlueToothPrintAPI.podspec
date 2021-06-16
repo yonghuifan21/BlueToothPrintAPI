@@ -34,9 +34,9 @@ TODO: BlueToothPrintAPI is a print SDK with BlueTooth, you just send you print i
 
   s.source_files = 'BlueToothPrintAPI/Classes/**/*'
   
-  # s.resource_bundles = {
-  #   'BlueToothPrintAPI' => ['BlueToothPrintAPI/Assets/*.png']
-  # }
+  s.resource_bundles = {
+     'BlueToothPrintAPI' => ['BlueToothPrintAPI/Assets/**/*']
+  }
 
   s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'UIKit'
