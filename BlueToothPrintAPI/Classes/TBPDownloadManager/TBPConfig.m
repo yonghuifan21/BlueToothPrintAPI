@@ -74,7 +74,11 @@
 //        NSURL *bundleURL = [[NSBundle mainBundle] URLForResource:@"BlueToothPrintAPI" withExtension:@"bundle"];
         NSBundle *bundle = [NSBundle bundleForClass: [self class]];
         NSURL *bundleUrl = [bundle URLForResource:@"BlueToothPrintAPI" withExtension:@"bundle"];
-        bundle = [NSBundle bundleWithURL: bundleUrl];
+        if(!bundleUrl){
+            bundle = [NSBundle mainBundle];
+        }else{
+            bundle = [NSBundle bundleWithURL: bundleUrl];
+        }
         NSString *tempBundlePath = [bundle pathForResource:HTMLNAME ofType: HTMLTYPE];
         return tempBundlePath;
     }
