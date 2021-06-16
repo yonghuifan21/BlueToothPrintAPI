@@ -11,6 +11,9 @@
 #import "TBPCheckVersionTool.h"
 #import "TBPConfig.h"
 #import "TBPBlueToothCoconut.h"
+#import "TBPDowloadTool.h"
+
+
 
 #define TRANSFORMSTR @"transform"
 
@@ -29,8 +32,21 @@
 //html link
 #define HTMLNAME @"index"
 #define HTMLTYPE @"html"
-
 #define DELAYSECONDS 1.5
+
+
+#define PRINTSUCCESS 200000 //打印成功
+
+#define TEMPLATEERROR 600000 //打印模板数据转换出错
+
+#define TANSFORMCOMMANDERROR 700000 //打印指令转换出错
+
+#define BLUEPRINTERROR 800000 //打印出错
+
+#define PRINTSUCCESSINFO @"打印成功"
+
+#define PRINTSDKRESULT(code, message) @{@"code": @(code), @"message": message}
+
 
 @interface TBPBridgeWebView()<WKNavigationDelegate>
 
@@ -57,6 +73,7 @@
         [WebViewJavascriptBridge enableLogging];
         _bridge = [WebViewJavascriptBridge bridgeForWebView: _webview];
         [_bridge setWebViewDelegate: self];
+        
     }
     
     return _webview;
@@ -120,14 +137,9 @@
 }
 
 #pragma mark ============================ Data Combina ============================
+
 //获取打印数据，然后通过桥接传给js，转换成打印指令之后进行打印, 成功或者失败之后会有回调
-- (void)setPrintData: (NSString *)printStr finishPrintBlock: (void(^)(BOOL success, NSString *message))result; {
-    //先检测蓝牙是否连接
-    BOOL connect = [self checkPertheralConnect];
-    if(!connect){
-        [self handlerRevertWith:NO message:@"没有连接打印机" finishPrintBlock: result];
-        return;
-    }
+- (void)setPrintData: (NSString *)printStr finishPrintBlock: (void(^)(NSDictionary *printDict))result; {
     NSString *printJSONStr = printStr;
     if(printJSONStr && printJSONStr.length > 0) {
         __weak typeof(self) weakSelf = self;
@@ -145,9 +157,10 @@
    NSNumber *connectState = [TBPBlueToothCoconut shareInstance].connectState;
    return connectState.boolValue;
 }
-//打印数据解析
-- (void)dataCompileWith: (NSString *)responseData finishPrintBlock: (void(^)(BOOL success, NSString *message))result{
-    
+// 打印数据解析
+- (void)dataCompileWith: (NSString *)responseData finishPrintBlock: (void(^)(NSDictionary *printDict))result{
+    NSString *errorStr = @"打印指令转换失败";
+    NSInteger errorCode = TANSFORMCOMMANDERROR;
     if(responseData && [responseData isKindOfClass:[NSString class]]){ //数据转换
         
         //JSON 解析
@@ -156,7 +169,7 @@
         NSDictionary *reponseDict = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
         
         if(!reponseDict){
-            [self handlerRevertWith:NO message:@"格式转换失败" finishPrintBlock: result];
+            [self handlerRevertWith:errorCode message: errorStr finishPrintBlock: result];
             return;
         }
         // 数据转换
@@ -170,26 +183,39 @@
             NSData *base64Data = [[NSData alloc] initWithBase64EncodedString: responStr options: NSDataBase64DecodingIgnoreUnknownCharacters];
             NSData *printData = [[NSData alloc] initWithData: base64Data];
             if(printData){
-                [[TBPBlueToothManager shareInstance] printDataWith: printData];
-                [self handlerRevertWith:YES message:responMessage finishPrintBlock: result];
+                [self blueToothPrintData:printData finishPrintBlock: result];
             }else{
-                [self handlerRevertWith:NO message:@"格式转换失败" finishPrintBlock: result];
+                [self handlerRevertWith:errorCode message:errorStr finishPrintBlock: result];
             }
             
         }else{ //转换失败
-            [self handlerRevertWith:NO message:responMessage finishPrintBlock: result];
+            [self handlerRevertWith:errorCode message:responMessage finishPrintBlock: result];
         }
     }
 }
+
+//打印出错
+- (void)blueToothPrintData: (NSData *)data finishPrintBlock: (void(^)(NSDictionary *printDict))result{
+    //先检测蓝牙是否连接
+    BOOL connect = [self checkPertheralConnect];
+    if(!connect){
+        [self handlerRevertWith:BLUEPRINTERROR message:@"没有连接打印机" finishPrintBlock: result];
+        return;
+    }
+    
+    [[TBPBlueToothManager shareInstance] printDataWith: data];
+    [self handlerRevertWith:PRINTSUCCESS message: @"打印成功" finishPrintBlock: result];
+}
+
 //数据回调
-- (void)handlerRevertWith: (BOOL)success message: (NSString *)message finishPrintBlock: (void(^)(BOOL success, NSString *message))result; {
+- (void)handlerRevertWith: (NSInteger)code message: (NSString *)message finishPrintBlock: (void(^)(NSDictionary *printDict))result; {
     if(!result){
         return;
     }
-    if(success){
-        result(YES, nil);
+    if(code == PRINTSUCCESS){
+        result(PRINTSDKRESULT(PRINTSUCCESS, PRINTSUCCESSINFO));
     }else{
-        result(NO, message);
+        result(PRINTSDKRESULT(code, message));
     }
 }
 
@@ -198,9 +224,9 @@
     if(self.isLoadHtml){
         return;
     }
-    NSString *htmlBundlePath1 = [[NSBundle mainBundle] pathForResource: HTMLNAME ofType: HTMLTYPE];
-    NSString *appHtml = [NSString stringWithContentsOfFile: htmlBundlePath1 encoding: NSUTF8StringEncoding error: nil];
-    NSURL *baseURL = [NSURL fileURLWithPath: htmlBundlePath1];
+//    NSString *htmlBundlePath1 = [[NSBundle mainBundle] pathForResource: HTMLNAME ofType: HTMLTYPE];
+    NSString *appHtml = [NSString stringWithContentsOfFile: htmlBundlePath encoding: NSUTF8StringEncoding error: nil];
+    NSURL *baseURL = [NSURL fileURLWithPath: htmlBundlePath];
     [self.webview loadHTMLString:appHtml baseURL: baseURL];
 //    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://192.168.21.138:8000/?eruda=true"]];
 //    [self.webview loadRequest: urlRequest];
@@ -225,6 +251,42 @@
 }
 
 #pragma mark ============================ Other ============================
+
+/// 根据打印模板号，版本号，打印数据，组装打印数据
+/// @param templateNo <#templateNo description#>
+/// @param version <#version description#>
+/// @param data <#data description#>
+- (void)printTemplateGetPrintTemplateNo: (NSInteger)templateNo version: (NSInteger)version data: (NSString *)data finishPrintBlock:(nonnull void (^)(NSDictionary * _Nonnull))result{
+    
+    NSString *errorStr = @"打印模板数据转换出错";
+    NSInteger errorCode = TEMPLATEERROR;
+    
+    if(data && [data length] > 0){
+    }else{
+        [self handlerRevertWith:errorCode message: errorStr finishPrintBlock: result];
+        NSAssert(false, @"数据不能为空");
+    }
+   TBPDowloadTool *postTool =  [[TBPDowloadTool alloc] init];
+   NSString *downloadUrl = [TBPConfig sharedInstance].printDataURL;
+   downloadUrl = [downloadUrl stringByAppendingPathComponent:@"printTemplate/getPrintData"];
+    __weak typeof(self) weakSelf = self;
+    [postTool post:downloadUrl postBody:@{@"templateNo": @(templateNo), @"version": @(version), @"data": data} requestBack:^(NSDictionary * _Nonnull reponse) {
+        NSInteger code = [reponse[@"code"] integerValue];
+        NSString *message = [reponse[@"message"] stringValue];
+        NSString *resultRes = [reponse[@"result"] stringValue];
+        if(code == PRINTSUCCESS){
+            [weakSelf setPrintData:resultRes finishPrintBlock: result];
+        }else{
+            if(!message){
+                message = errorStr;
+            }
+            [self handlerRevertWith:errorCode message: message finishPrintBlock: result];
+        }
+        
+    } Failure:^(NSError * _Nullable error) {
+        [self handlerRevertWith:errorCode message: errorStr finishPrintBlock: result];
+    }];
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

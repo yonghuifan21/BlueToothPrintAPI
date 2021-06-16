@@ -7,6 +7,8 @@
 //
 
 #import "TBPDowloadTool.h"
+#import "TBPConfig.h"
+
 @interface TBPDowloadTool ()<NSURLSessionDelegate>
 
 ///展示进度的下载需要的url
@@ -98,7 +100,9 @@
     [request setHTTPBody:bodyData];
     
     [request setAllHTTPHeaderFields:@{@"Content-Type":@"application/json; charset=utf-8"}];
-    
+    if(TBPConfig.sharedInstance.debugEnable){
+        NSLog(@"HTTPRequest \n URL === %@ \n Body === %@", utf8Urlstring, body);
+    }
     //2.创建session
     NSURLSession *session = [NSURLSession sharedSession];
     //任务
@@ -107,12 +111,18 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             if (error) {
                 if (failure) {
+                    if(TBPConfig.sharedInstance.debugEnable){
+                        NSLog(@"error === %@", error);
+                    }
                     failure(error);
                 }
             }else{
                 //json数据解析
                 NSError *jsonErr;
                 NSDictionary *resultDic = (NSDictionary *)[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:&jsonErr];
+                if(TBPConfig.sharedInstance.debugEnable){
+                    NSLog(@"resultDic === %@ \n jsonErr === %@", resultDic, jsonErr);
+                }
                 if (jsonErr) {
                     if (failure) {
                         failure(error);
@@ -141,7 +151,9 @@
     //设置超时
     [request setTimeoutInterval:60];
     //2.创建session
-    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
+    sessionConfig.requestCachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
+    NSURLSession *session = [NSURLSession sessionWithConfiguration: sessionConfig];
     //任务
     NSURLSessionDataTask *sessionTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         //回到主线程

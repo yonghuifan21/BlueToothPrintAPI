@@ -52,11 +52,16 @@ NS_ASSUME_NONNULL_BEGIN
 //SDK Version
 @property (nonatomic,copy) NSString *sdkVersion;
 
+//开启Debug模式, debug模式开启，打印日志
+@property (nonatomic,assign) BOOL debugEnable;
+
 ///RNBridgeManager单例
 + (instancetype)sharedInstance;
 
 //根据版本号，获取对应的index.html文件
 - (NSString *)getBundlePathForDownload: (NSString *)version;
+
+- (NSString *)printDataURL;
 
 @end
 

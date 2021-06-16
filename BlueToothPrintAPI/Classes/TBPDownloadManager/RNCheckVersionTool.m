@@ -6,28 +6,28 @@
 //  Copyright © 2020 泽怡. All rights reserved.
 //
 
-#import "TBPCheckVersionTool.h"
-#import "TBPHotUpdateTool.h"
-#import "TBPDowloadTool.h"
-#import "TBPConfig.h"
+#import "PrintCheckVersionTool.h"
+#import "RNHotUpdateTool.h"
+#import "RNDowloadTool.h"
+#import "NatvieConfig.h"
 
 //#define UPDATEINFOJSON @"http://localhost:8081/rndownloadtest/rnUpdateTest.json"
 //https://static-yh.yonghui.cn/app/esc-pos-parser/version.json
-#define UPDATEINFOJSON @"https://static-yh.yonghui.cn/app/test/esc-pos-parser/version.json"
+#define UPDATEINFOJSON @"https://static-yh.yonghui.cn/app/esc-pos-parser/version.json"
 
 
 #define VERSION @"version"
 #define URL @"url"
 #define iOSCOMPATIBLEVERSION @"iOSCompatibleVersion"
 #define DESCRIPTION @"description"
-#define IOSBUNDLEZIPMD5 @"md5"
+#define IOSBUNDLEZIPMD5 @"zipMD5"
 
-@implementation TBPCheckVersionTool
+@implementation PrintCheckVersionTool
 
-+ (void)downloadH5Info:(void (^)(NSString *bundlePath))resultBlock
++ (void)downloadBundle:(void (^)(NSString *bundlePath))resultBlock
 {
     
-    TBPDowloadTool *downloadTool =  [TBPDowloadTool new];
+    RNDowloadTool *downloadTool =  [RNDowloadTool new];
     [downloadTool get: UPDATEINFOJSON requestBack:^(NSDictionary * _Nonnull responseDict) {
         NSString *version = [responseDict objectForKey: VERSION];
         NSString *url = [responseDict objectForKey: URL];
@@ -35,21 +35,19 @@
         NSString *description = [responseDict objectForKey: DESCRIPTION];
         NSString *ios_bundleMD5 = [responseDict objectForKey: IOSBUNDLEZIPMD5];
         
-        TBPCheckVersionTool *vtool = [TBPCheckVersionTool new];
+        PrintCheckVersionTool *vtool = [PrintCheckVersionTool new];
         vtool.version = version;
         vtool.url = url;
         vtool.iOSCompatibleVersion = iosCompatibleVersion;
         vtool.descriptionInfo = description;
         vtool.ios_bundleMD5 = ios_bundleMD5;
-        
         if([self isNeedUpdate: vtool]){
-            [TBPConfig sharedInstance].zipDowMD5 = vtool.ios_bundleMD5;
-            [TBPConfig sharedInstance].h5DownVersion = vtool.version;
+            [NatvieConfig sharedInstance].zipDowMD5 = vtool.ios_bundleMD5;
+            [NatvieConfig sharedInstance].h5DownVersion = vtool.version;
             [self downloadWithUrl:vtool.url resultBlock:resultBlock];
         }else{
             resultBlock(@"");
         }
-        
         
     } Failure:^(NSError * _Nullable error) {
         resultBlock(@"");
@@ -59,28 +57,27 @@
 
 + (void)downloadWithUrl:(NSString *)urlStr resultBlock:(void (^)(NSString *bundlePath))resultBlock
 {
-    [[TBPHotUpdateTool sharedRNHotUpdateTool] downloadResourcesWithUrlstr:urlStr ResultSuccess:^(NSString * _Nullable loadpath) {
+    [[RNHotUpdateTool sharedRNHotUpdateTool] downloadResourcesWithUrlstr:urlStr ResultSuccess:^(NSString * _Nullable loadpath) {
         
         // 校验MD5
-        NSString *dowMD5 = [[TBPHotUpdateTool sharedRNHotUpdateTool] getMd5WithFile:loadpath];
-        if (![dowMD5 isEqualToString:[TBPConfig sharedInstance].zipDowMD5]) {
+        NSString *dowMD5 = [[RNHotUpdateTool sharedRNHotUpdateTool] getMd5WithFlie:loadpath];
+        if (![dowMD5 isEqualToString:[NatvieConfig sharedInstance].zipDowMD5]) {
             resultBlock(@"");
             return;
         }
         
         //解压到缓存中
-        NSString *destDir = [NSString stringWithFormat:@"%@/%@/%@",DOCUMENTPATH ,PTBaseHtmlFolder,[TBPConfig sharedInstance].h5DownVersion];
+        NSString *destDir = [NSString stringWithFormat:@"%@/%@/%@",DOCUMENTPATH ,PTBaseHtmlFolder,[NatvieConfig sharedInstance].h5DownVersion];
         // 删除多余文件夹
         [self removeRNDir];
-        if ([[TBPHotUpdateTool sharedRNHotUpdateTool] unzipWithZipPath:loadpath andDestDir:destDir]) {
+        if ([[RNHotUpdateTool sharedRNHotUpdateTool] unzipWithZipPath:loadpath andDestDir:destDir]) {
             // 删除多余文件夹
             [self removeRNDir];
             // 获取本地路径  doc/版本号/bundle文件
-//            NSString *bundlePath = [NSString stringWithFormat:@"%@/%@",DOCUMENTPATH ,PTBasePath([NatvieConfig sharedInstance].h5DownVersion)];
-            NSString *bundlePath = [[TBPConfig sharedInstance] getBundlePathForDownload: [TBPConfig sharedInstance].h5DownVersion];
+            NSString *bundlePath = [NSString stringWithFormat:@"%@/%@",DOCUMENTPATH ,PTBasePath([NatvieConfig sharedInstance].h5DownVersion)];
             // 储存版本号和MD5到本地
-            ZYSetValueToUserDefaults(ZIPMD5KEY, [TBPConfig sharedInstance].zipDowMD5);
-            ZYSetValueToUserDefaults(H5VERSIONKEY, [TBPConfig sharedInstance].h5DownVersion);
+            ZYSetValueToUserDefaults(ZIPMD5KEY, [NatvieConfig sharedInstance].zipDowMD5);
+            ZYSetValueToUserDefaults(H5VERSIONKEY, [NatvieConfig sharedInstance].h5DownVersion);
             // 返回解压后的路径
             resultBlock(bundlePath);
         }else{
@@ -91,14 +88,14 @@
    }];
 }
 
-+ (BOOL)isNeedUpdate:(TBPCheckVersionTool *)rnvTool
++ (BOOL)isNeedUpdate:(PrintCheckVersionTool *)rnvTool
 {
     //先判断SDK版本, 如果sdk版本低，则不能更新
-    if([self compareIsNeedUpWithCurVersion:[TBPConfig sharedInstance].sdkVersion NetVersion: rnvTool.iOSCompatibleVersion]){
+    if([self compareIsNeedUpWithCurVersion:[NatvieConfig sharedInstance].sdkVersion NetVersion: rnvTool.iOSCompatibleVersion]){
         return NO;
     }
     // 比较版本号
-    if ([self compareIsNeedUpWithCurVersion:[TBPConfig sharedInstance].h5Version NetVersion:rnvTool.version]) {
+    if ([self compareIsNeedUpWithCurVersion:[NatvieConfig sharedInstance].h5Version NetVersion:rnvTool.version]) {
         return YES;
     }
     return NO;

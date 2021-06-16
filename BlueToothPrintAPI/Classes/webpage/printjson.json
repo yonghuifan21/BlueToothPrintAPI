@@ -1,0 +1,23 @@
+{
+    "shopName": "永辉超市-中骏广场",
+    "deliverTypeName": "即时达",
+    "deliverTime": "06/10 18:00:00",
+    "printOrder": 1,
+    "orderTime": "06/10 9:01:34",
+    "orderNo": "ON-20210610",
+    "reveiverName": "杨礼",
+    "reveiverTel": "139****4421",
+    "reveiverAddr": "中骏广场 1 期 5 号楼梦想+空间",
+    "goodsCount": 3,
+    "goods": [
+      { "index": 1, "name": "红富士苹果", "count": 2, "code": "P00001", "unit": "kg", "price": 9.9, "total": 19.8 },
+      { "index": 2, "name": "脉动青柠味 600ml", "count": 1, "code": "P00002", "unit": "瓶", "price": 5.5, "total": 5.5 }
+    ],
+    "moneyList": [
+      {"label": "微信支付", "value": 19.8},
+      {"label": "积分抵扣", "value": 5.5}
+    ],
+    "shouldReceive": 19.8,
+    "pickUpCode": "PC9000001",
+    "tips": "打印测试 Every flight begins with a fall ❤️"
+  }
